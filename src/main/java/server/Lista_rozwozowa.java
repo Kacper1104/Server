@@ -1,20 +1,19 @@
 package server;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Lista_rozwozowa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
-
+    @Column
     private Date Data;
-
-    private Integer Magazynier_ID;
+    @ManyToOne
+    @JoinColumn(name="Magazynier_ID")
+    private Magazynier magazynier;
 
     public Integer getID() {
         return ID;
@@ -32,11 +31,11 @@ public class Lista_rozwozowa {
         Data = data;
     }
 
-    public Integer getMagazynier_ID() {
-        return Magazynier_ID;
+    public Magazynier getMagazynier() {
+        return magazynier;
     }
 
-    public void setMagazynier_ID(Integer magazynier_ID) {
-        Magazynier_ID = magazynier_ID;
+    public void setMagazynier(Magazynier magazynier) {
+        this.magazynier= magazynier;
     }
 }

@@ -1,19 +1,19 @@
 package server;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Magazynier {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
-
+    @Column(nullable = false)
     private String Login;
-
+    @Column(nullable = false)
     private String Haslo;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Magazynier")
+    private List<Lista_rozwozowa> lista_rozwozowaList;
 
     public Integer getID() {
         return ID;

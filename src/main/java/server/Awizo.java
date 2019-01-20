@@ -1,9 +1,6 @@
 package server;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -11,10 +8,11 @@ public class Awizo{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer ID;
-
+    @Column
     private Date Data_zostawienia;
-
-    private Integer Przesylka_ID;
+    @OneToMany
+    @JoinColumn(name="Przesylka_ID")
+    private Przesylka Przesylka;
 
     public Integer getId() {
         return ID;
@@ -32,11 +30,11 @@ public class Awizo{
         this.Data_zostawienia = Data_zostawienia;
     }
 
-    public Integer getPrzesylka_ID() {
-        return Przesylka_ID;
+    public Przesylka getPrzesylka() {
+        return Przesylka;
     }
 
-    public void setPrzesylka_ID(Integer Przesylka_ID) {
-        this.Przesylka_ID = Przesylka_ID;
+    public void setPrzesylka(Przesylka Przesylka) {
+        this.Przesylka = Przesylka;
     }
 }

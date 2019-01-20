@@ -1,29 +1,28 @@
 package server;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Nadawca {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
-
+    @Column(length = 26)
     private Integer Numer_konta;
-
+    @Column(length = 50)
     private String Imie_I_Nazwisko;
-
+    @Column(length = 50)
     private String Adres;
-
+    @Column(length = 6)
     private String Kod_Pocztowy;
-
+    @Column(length = 50)
     private String Miejscowosc;
-
+    @Column(length = 20, nullable = false)
     private String Login;
-
+    @Column(length = 20, nullable = false)
     private String Haslo;
+
+    //do skonczenia potem, listy obiektow!!!
 
     public Integer getID() {
         return ID;

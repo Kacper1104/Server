@@ -10,31 +10,28 @@ public class Awizo{
     private Integer ID;
     @Column
     private Date Data_zostawienia;
-    @OneToMany
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="Przesylka_ID")
-    private Przesylka Przesylka;
+    private Przesylka Przesylka_ID;
 
-    public Integer getId() {
-        return ID;
-    }
 
-    public void setId(Integer ID) {
-        this.ID = ID;
-    }
-
+    //getters & setters
     public Date getData_zostawienia() {
         return Data_zostawienia;
     }
-
     public void setData_zostawienia(Date Data_zostawienia) {
         this.Data_zostawienia = Data_zostawienia;
     }
-
-    public Przesylka getPrzesylka() {
-        return Przesylka;
+    public Przesylka getPrzesylka_ID() {
+        return Przesylka_ID;
     }
-
-    public void setPrzesylka(Przesylka Przesylka) {
-        this.Przesylka = Przesylka;
+    public void setPrzesylka_ID(Przesylka Przesylka_ID) {
+        this.Przesylka_ID = Przesylka_ID;
+    }
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+    public Integer getID() {
+        return ID;
     }
 }

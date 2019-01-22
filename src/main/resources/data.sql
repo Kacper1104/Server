@@ -8,7 +8,7 @@ INSERT INTO lista_rozwozowa(id, data) VALUES(4, '2019-01-20');
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
             VALUES (1, 'kuerier1', 'haslo1', 'Jan Kowalski', 1);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (2, 'kuerier2', 'haslo2', 'Adam Szewczyk', 1);
+            VALUES (2, 'kuerier2', 'haslo2', 'Adam Szewczyk', null);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
             VALUES (3, 'kuerier3', 'haslo3', 'Michal Janiak', null);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
@@ -16,13 +16,13 @@ INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
             VALUES (5, 'kuerier5', 'haslo5', 'Kacper Staniszewski', 2);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (6, 'kuerier6', 'haslo6', 'Lukasz Adamczewski', 2);
+            VALUES (6, 'kuerier6', 'haslo6', 'Lukasz Adamczewski', null);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
             VALUES (7, 'kuerier7', 'haslo7', 'Krzysztof Piekarski', null);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (8, 'kuerier8', 'haslo8', 'Jakub Adamiak', 1);
+            VALUES (8, 'kuerier8', 'haslo8', 'Jakub Adamiak', 3);
 INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (9, 'kuerier9', 'haslo9', 'Aleksandra Marczak', 1);
+            VALUES (9, 'kuerier9', 'haslo9', 'Aleksandra Marczak', 4);
 
 
 

@@ -15,7 +15,7 @@ public class AwizoResource {
     }
 
     @GetMapping("/awizo")
-    public List<Awizo> getAwizo(){
+    public Iterable<Awizo> getAwizo(){
         return awizoRepository.findAll();
     }
 

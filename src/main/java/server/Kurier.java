@@ -14,6 +14,8 @@ public class Kurier {
     private String Login;
     @Column(nullable = false, length = 20)
     private String Haslo;
+    @Column(length = 50)
+    private String Imie_I_Nazwisko;
 
 
     //getters & setters
@@ -40,5 +42,11 @@ public class Kurier {
     }
     public void setHaslo(String haslo) {
         Haslo = haslo;
+    }
+    public String getImie_I_Nazwisko() {
+        return Imie_I_Nazwisko;
+    }
+    public void setImie_I_Nazwisko(String imie_I_Nazwisko) {
+        Imie_I_Nazwisko = imie_I_Nazwisko;
     }
 }

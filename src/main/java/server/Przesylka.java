@@ -1,10 +1,13 @@
 package server;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Przesylka {
+public class Przesylka{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
@@ -81,18 +84,21 @@ public class Przesylka {
     public void setOstatnia_zmiana_statusu(Date ostatnia_zmiana_statusu) {
         Ostatnia_zmiana_statusu = ostatnia_zmiana_statusu;
     }
+    @JsonBackReference
     public Lista_rozwozowa getLista_rozwozowa_ID() {
         return Lista_rozwozowa_ID;
     }
     public void setLista_rozwozowa_ID(Lista_rozwozowa lista_rozwozowa_ID) {
         Lista_rozwozowa_ID = lista_rozwozowa_ID;
     }
+    @JsonBackReference
     public Nadawca getNadawca_ID() {
         return Nadawca_ID;
     }
     public void setNadawca_ID(Nadawca nadawca_ID) {
         Nadawca_ID = nadawca_ID;
     }
+    @JsonBackReference
     public Odbiorca getOdbiorca_ID() {
         return Odbiorca_ID;
     }

@@ -1,10 +1,13 @@
 package server;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Awizo{
+public class Awizo {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer ID;
@@ -22,6 +25,7 @@ public class Awizo{
     public void setData_zostawienia(Date Data_zostawienia) {
         this.Data_zostawienia = Data_zostawienia;
     }
+    @JsonBackReference
     public Przesylka getPrzesylka_ID() {
         return Przesylka_ID;
     }

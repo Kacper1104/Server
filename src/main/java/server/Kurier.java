@@ -1,6 +1,9 @@
 package server;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Kurier {
@@ -25,6 +28,7 @@ public class Kurier {
     public void setID(Integer ID) {
         this.ID = ID;
     }
+    @JsonBackReference
     public Lista_rozwozowa getLista_rozwozowa_ID() {
         return Lista_rozwozowa_ID;
     }

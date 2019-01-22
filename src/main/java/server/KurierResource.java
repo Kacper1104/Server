@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest")
 @CrossOrigin
-public class KurierResource {
+public class KurierResource{
     KurierRepository kurierRepository;
 
     public KurierResource(KurierRepository kurierRepository){
@@ -18,7 +18,7 @@ public class KurierResource {
     }
 
     @GetMapping("/kurier")
-    public List<Kurier> getKueier(){
-        return (List<Kurier>) kurierRepository.findAll();
+    public List<Kurier> getKurier(){
+        return kurierRepository.findAll();
     }
 }

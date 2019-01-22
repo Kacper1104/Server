@@ -1,6 +1,6 @@
 package server;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AwizoRepository extends CrudRepository<Awizo, Integer> {
+public interface AwizoRepository extends JpaRepository<Awizo, Integer> {
 }

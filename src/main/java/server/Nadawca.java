@@ -1,6 +1,9 @@
 package server;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -74,6 +77,7 @@ public class Nadawca {
     public void setHaslo(String haslo) {
         Haslo = haslo;
     }
+    @JsonManagedReference
     public List<Przesylka> getPrzesylka() {
         return przesylka;
     }

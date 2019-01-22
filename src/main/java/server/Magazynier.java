@@ -1,10 +1,13 @@
 package server;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Magazynier {
+public class Magazynier{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
@@ -35,6 +38,7 @@ public class Magazynier {
     public void setHaslo(String haslo) {
         Haslo = haslo;
     }
+    @JsonManagedReference
     public List<Lista_rozwozowa> getLista_rozwozowa() {
         return lista_rozwozowa;
     }

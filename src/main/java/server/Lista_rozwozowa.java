@@ -1,5 +1,8 @@
 package server;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +13,7 @@ public class Lista_rozwozowa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
     @Column
+    @Temporal(TemporalType.DATE)
     private Date Data;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( name="Magazynier_ID")
@@ -32,18 +36,21 @@ public class Lista_rozwozowa {
     public void setData(Date data) {
         Data = data;
     }
+    @JsonBackReference
     public Magazynier getMagazynier_ID() {
         return Magazynier_ID;
     }
     public void setMagazynier_ID(Magazynier magazynier_ID) {
         Magazynier_ID = magazynier_ID;
     }
+    @JsonManagedReference
     public Kurier getKurier() {
         return kurier;
     }
     public void setKurier(Kurier kurier) {
         this.kurier = kurier;
     }
+    @JsonManagedReference
     public List<Przesylka> getPrzesylka() {
         return przesylka;
     }

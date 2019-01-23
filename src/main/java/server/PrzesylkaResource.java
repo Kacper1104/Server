@@ -16,7 +16,7 @@ public class PrzesylkaResource {
     }
 
     @RequestMapping(value = "/przesylka", method = RequestMethod.GET)
-    public List<Przesylka> get(){
-        return przesylkaRepository.findAll();
+    public ListaPaczek get(){
+        return new ListaPaczek(przesylkaRepository.findAll());
     }
 }

@@ -1,13 +1,15 @@
 package server;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Przesylka{
+public class Przesylka implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;

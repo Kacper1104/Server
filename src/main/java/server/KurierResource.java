@@ -1,15 +1,12 @@
 package server;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
 @CrossOrigin
+@RequestMapping("/rest")
 public class KurierResource{
     KurierRepository kurierRepository;
 
@@ -17,8 +14,8 @@ public class KurierResource{
         this.kurierRepository = kurierRepository;
     }
 
-    @GetMapping("/kurier")
-    public List<Kurier> getKurier(){
+    @RequestMapping(value = "/kurier", method = RequestMethod.GET)
+    public Iterable<Kurier> get(){
         return kurierRepository.findAll();
     }
 }

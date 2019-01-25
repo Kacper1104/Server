@@ -1,6 +1,7 @@
 package server;
 
-import org.springframework.data.repository.CrudRepository;
 
-public interface Lista_rozwozowaRepository extends CrudRepository<Lista_rozwozowa, Integer> {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Lista_rozwozowaRepository extends JpaRepository<Lista_rozwozowa, Integer> {
 }

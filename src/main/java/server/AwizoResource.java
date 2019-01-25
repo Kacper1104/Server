@@ -14,10 +14,21 @@ public class AwizoResource {
         this.awizoRepository = awizoRepository;
     }
 
-    @GetMapping("/awizo")
-    public Iterable<Awizo> getAwizo(){
-        return awizoRepository.findAll();
+    @RequestMapping(value = "/awizo", method = RequestMethod.GET)
+    public AwizoList getAll(){
+        return new AwizoList(awizoRepository.findAll());
+    }
+
+    @RequestMapping(value = "/awizo/{id}", method = RequestMethod.GET)
+    public Awizo getAwizo(@PathVariable Integer ID){
+        return awizoRepository.findById(ID).orElseThrow(() -> new AwizoNotFoundException(ID));
     }
 
 
+}
+class AwizoNotFoundException extends RuntimeException {
+
+     AwizoNotFoundException(Integer id) {
+        super("404 Awizo with id "+id+" not found");
+    }
 }

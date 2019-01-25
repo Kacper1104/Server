@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity // This tells Hibernate to make a table out of this class
 public class Magazynier{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
     @Column(nullable = false)
     private String Login;

@@ -23,6 +23,12 @@ public class Lista_rozwozowaResource{
     public Lista_rozwozowa getLista_rozwozowa(@PathVariable Integer ID){
         return lista_rozwozowaRepository.findById(ID).orElseThrow(() -> new Lista_rozwozowaNotFoundException(ID));
     }
+
+    @RequestMapping(value = "/lista_rozwozowa", method = RequestMethod.POST)
+    public Lista_rozwozowa getNewLista_rozwozowa(@RequestBody Lista_rozwozowa newLista_rozwozowa) {
+        System.out.println("Przyjalem");
+        return lista_rozwozowaRepository.save(newLista_rozwozowa);
+    }
 }
 
 class Lista_rozwozowaNotFoundException extends RuntimeException {

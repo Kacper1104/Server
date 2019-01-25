@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity // This tells Hibernate to make a table out of this class
 public class Odbiorca{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
     @Column(length = 255)
     private String Adnotacje;

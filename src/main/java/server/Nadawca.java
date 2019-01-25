@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity // This tells Hibernate to make a table out of this class
 public class Nadawca {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
     @Column(length = 34)
     private String Numer_konta;

@@ -7,7 +7,6 @@ import java.util.Date;
 @Entity // This tells Hibernate to make a table out of this class
 public class Awizo {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer ID;
     @Column
     @Temporal(TemporalType.DATE)

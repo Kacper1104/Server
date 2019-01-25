@@ -6,7 +6,6 @@ import java.util.Date;
 @Entity // This tells Hibernate to make a table out of this class
 public class Przesylka{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
     @Column(length = 30, nullable = false)
     private String Status_przesylki;

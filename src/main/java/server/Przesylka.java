@@ -1,15 +1,10 @@
 package server;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Przesylka implements Serializable{
+public class Przesylka{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
@@ -26,16 +21,17 @@ public class Przesylka implements Serializable{
     @Column(length = 2)
     private Integer Proba_dostarczenia;
     @Column
+    @Temporal(TemporalType.DATE)
     private Date Ostatnia_zmiana_statusu;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Lista_rozwozowa_ID")
-    private Lista_rozwozowa Lista_rozwozowa_ID;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Nadawca_ID")
-    private Nadawca Nadawca_ID;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Odbiorca_ID")
-    private Odbiorca Odbiorca_ID;
+    //fk
+    @Column
+    private Integer Lista_rozwozowa_ID;
+    //fk
+    @Column
+    private Integer Nadawca_ID;
+    //fk
+    @Column
+    private Integer Odbiorca_ID;
 
     //getters & setters
     public Integer getID() {
@@ -86,25 +82,22 @@ public class Przesylka implements Serializable{
     public void setOstatnia_zmiana_statusu(Date ostatnia_zmiana_statusu) {
         Ostatnia_zmiana_statusu = ostatnia_zmiana_statusu;
     }
-    @JsonBackReference
-    public Lista_rozwozowa getLista_rozwozowa_ID() {
+    public Integer getLista_rozwozowa_ID() {
         return Lista_rozwozowa_ID;
     }
-    public void setLista_rozwozowa_ID(Lista_rozwozowa lista_rozwozowa_ID) {
+    public void setLista_rozwozowa_ID(Integer lista_rozwozowa_ID) {
         Lista_rozwozowa_ID = lista_rozwozowa_ID;
     }
-    @JsonBackReference
-    public Nadawca getNadawca_ID() {
+    public Integer getNadawca_ID() {
         return Nadawca_ID;
     }
-    public void setNadawca_ID(Nadawca nadawca_ID) {
+    public void setNadawca_ID(Integer nadawca_ID) {
         Nadawca_ID = nadawca_ID;
     }
-    @JsonBackReference
-    public Odbiorca getOdbiorca_ID() {
+    public Integer getOdbiorca_ID() {
         return Odbiorca_ID;
     }
-    public void setOdbiorca_ID(Odbiorca odbiorca_ID) {
+    public void setOdbiorca_ID(Integer odbiorca_ID) {
         Odbiorca_ID = odbiorca_ID;
     }
 }

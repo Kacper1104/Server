@@ -1,10 +1,7 @@
 package server;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Magazynier{
@@ -15,8 +12,6 @@ public class Magazynier{
     private String Login;
     @Column(nullable = false)
     private String Haslo;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Magazynier_ID")
-    private List<Lista_rozwozowa> lista_rozwozowa;
 
 
     //getters & setters
@@ -37,12 +32,5 @@ public class Magazynier{
     }
     public void setHaslo(String haslo) {
         Haslo = haslo;
-    }
-    @JsonManagedReference
-    public List<Lista_rozwozowa> getLista_rozwozowa() {
-        return lista_rozwozowa;
-    }
-    public void setLista_rozwozowa(List<Lista_rozwozowa> lista_rozwozowa) {
-        this.lista_rozwozowa = lista_rozwozowa;
     }
 }

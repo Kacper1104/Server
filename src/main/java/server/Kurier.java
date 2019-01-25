@@ -1,18 +1,15 @@
 package server;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Kurier implements Serializable {
+public class Kurier {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="Lista_rozwozowa_ID")
-    private Lista_rozwozowa Lista_rozwozowa_ID;
+    @Column
+    private Integer Lista_rozwozowa_ID;
     @Column(nullable = false, length = 20)
     private String Login;
     @Column(nullable = false, length = 20)
@@ -28,11 +25,10 @@ public class Kurier implements Serializable {
     public void setID(Integer ID) {
         this.ID = ID;
     }
-    @JsonBackReference
-    public Lista_rozwozowa getLista_rozwozowa_ID() {
+    public Integer getLista_rozwozowa_ID() {
         return Lista_rozwozowa_ID;
     }
-    public void setLista_rozwozowa_ID(Lista_rozwozowa lista_rozwozowa_ID) {
+    public void setLista_rozwozowa_ID(Integer lista_rozwozowa_ID) {
         Lista_rozwozowa_ID = lista_rozwozowa_ID;
     }
     public String getLogin() {

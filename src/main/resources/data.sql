@@ -1,31 +1,3 @@
-INSERT INTO lista_rozwozowa(id, data) VALUES(1, '2019-01-22');
-INSERT INTO lista_rozwozowa(id, data) VALUES(2, '2019-01-22');
-INSERT INTO lista_rozwozowa(id, data) VALUES(3, '2019-01-21');
-INSERT INTO lista_rozwozowa(id, data) VALUES(4, '2019-01-20');
-
-
-
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (1, 'kuerier1', 'haslo1', 'Jan Kowalski', 1);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (2, 'kuerier2', 'haslo2', 'Adam Szewczyk', null);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (3, 'kuerier3', 'haslo3', 'Michal Janiak', null);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (4, 'kuerier4', 'haslo4', 'Karol Nowak', null);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (5, 'kuerier5', 'haslo5', 'Kacper Staniszewski', 2);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (6, 'kuerier6', 'haslo6', 'Lukasz Adamczewski', null);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (7, 'kuerier7', 'haslo7', 'Krzysztof Piekarski', null);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (8, 'kuerier8', 'haslo8', 'Jakub Adamiak', 3);
-INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
-            VALUES (9, 'kuerier9', 'haslo9', 'Aleksandra Marczak', 4);
-
-
-
 INSERT INTO magazynier(id, login, haslo) VALUES(1, 'magazynier1', 'haslo1');
 INSERT INTO magazynier(id, login, haslo) VALUES(2, 'magazynier2', 'haslo2');
 INSERT INTO magazynier(id, login, haslo) VALUES(3, 'magazynier3', 'haslo3');
@@ -33,22 +5,52 @@ INSERT INTO magazynier(id, login, haslo) VALUES(4, 'magazynier4', 'haslo4');
 
 
 
+
+
+INSERT INTO lista_rozwozowa(id, data, magazynier_id) VALUES(1, '2019-01-22', 1);
+INSERT INTO lista_rozwozowa(id, data, magazynier_id) VALUES(2, '2019-01-22', 2);
+INSERT INTO lista_rozwozowa(id, data, magazynier_id) VALUES(3, '2019-01-21', 2);
+INSERT INTO lista_rozwozowa(id, data, magazynier_id) VALUES(4, '2019-01-20', 3);
+
+
+
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (1, 'kurier1', 'haslo1', 'Jan Kowalski', 1);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (2, 'kurier2', 'haslo2', 'Adam Szewczyk', null);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (3, 'kurier3', 'haslo3', 'Michal Janiak', null);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (4, 'kurier4', 'haslo4', 'Karol Nowak', null);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (5, 'kurier5', 'haslo5', 'Kacper Staniszewski', 2);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (6, 'kurier6', 'haslo6', 'Lukasz Adamczewski', null);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (7, 'kurier7', 'haslo7', 'Krzysztof Piekarski', null);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (8, 'kurier8', 'haslo8', 'Jakub Adamiak', 3);
+INSERT INTO kurier (id, login, haslo, imie_i_nazwisko, lista_rozwozowa_id)
+            VALUES (9, 'kurier9', 'haslo9', 'Aleksandra Marczak', 4);
+
+
+
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(1, 'Andrzej Duda', 'Grunwaldzka 1', '50-365', 'Wroclaw', 11111, 'nadawca1', 'haslo1');
+            VALUES(1, 'Andrzej Duda', 'Grunwaldzka 1', '50-365', 'Wroclaw', '23 1234 1234 0000 4321 4321 4321', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(2, 'Jan Kowalski', 'Grunwaldzka 2', '50-365', 'Wroclaw', 11112, 'nadawca1', 'haslo1');
+            VALUES(2, 'Jan Kowalski', 'Grunwaldzka 2', '50-365', 'Wroclaw', 'PL23 1234 1234 0000 4321 4321 4322', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(3, 'Adam Nowak', 'Grunwaldzka 4', '50-365', 'Wroclaw', 11113, 'nadawca1', 'haslo1');
+            VALUES(3, 'Adam Nowak', 'Grunwaldzka 4', '50-365', 'Wroclaw', 'GB23 1234 1234 0000 4321 4321 4323', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(4, 'Grzegorz Janiak', 'Grunwaldzka 5', '50-365', 'Wroclaw', 11114, 'nadawca1', 'haslo1');
+            VALUES(4, 'Grzegorz Janiak', 'Grunwaldzka 5', '50-365', 'Wroclaw', 'US23 1234 1234 0000 4321 4321 4324', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(5, 'Michal Pawlak', 'Grunwaldzka 6', '50-365', 'Wroclaw', 11115, 'nadawca1', 'haslo1');
+            VALUES(5, 'Michal Pawlak', 'Grunwaldzka 6', '50-365', 'Wroclaw', 'PL23 1234 1234 0000 4321 4321 4325', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(6, 'Magdalena Nowacka', 'Grunwaldzka 7', '50-365', 'Wroclaw', 11116, 'nadawca1', 'haslo1');
+            VALUES(6, 'Magdalena Nowacka', 'Grunwaldzka 7', '50-365', 'Wroclaw', '23 1234 1234 0000 4321 4321 4326', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(7, 'Andrzej Michalski', 'Grunwaldzka 8', '50-365', 'Wroclaw', 11117, 'nadawca1', 'haslo1');
+            VALUES(7, 'Andrzej Michalski', 'Grunwaldzka 8', '50-365', 'Wroclaw', '23 1234 1234 0000 4321 4321 4327', 'nadawca1', 'haslo1');
 INSERT INTO nadawca(id, imie_i_nazwisko, adres, kod_pocztowy, miejscowosc, numer_konta, login, haslo)
-            VALUES(8, 'Anna Pietrzak', 'Grunwaldzka 12', '50-365', 'Wroclaw', 11118, 'nadawca1', 'haslo1');
+            VALUES(8, 'Anna Pietrzak', 'Grunwaldzka 12', '50-365', 'Wroclaw', '23 1234 1234 0000 4321 4321 4328', 'nadawca1', 'haslo1');
 
 
 

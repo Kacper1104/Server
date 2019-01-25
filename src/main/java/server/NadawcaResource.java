@@ -1,10 +1,7 @@
 package server;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +15,19 @@ public class NadawcaResource {
         this.nadawcaRepository = nadawcaRepository;
     }
 
-    @GetMapping("/nadawca")
-    public List<Nadawca> getNadawca(){
-        return (List<Nadawca>) nadawcaRepository.findAll();
+    @RequestMapping(value = "/nadawcy", method = RequestMethod.GET)
+    public NadawcaList getAll(){
+        return new NadawcaList(nadawcaRepository.findAll());
+    }
+
+    @RequestMapping(value = "/nadawcy/{ID}", method = RequestMethod.GET)
+    public Nadawca getNadawca(@PathVariable Integer ID){
+        return nadawcaRepository.findById(ID).orElseThrow(() -> new NadawcaNotFoundException(ID));
+    }
+}
+
+class NadawcaNotFoundException extends RuntimeException{
+    public NadawcaNotFoundException(Integer ID){
+        super("404 Nadawca with id "+ID+" not found");
     }
 }

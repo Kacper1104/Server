@@ -1,10 +1,7 @@
 package server;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +15,19 @@ public class MagazynierResource {
         this.magazynierRepository = magazynierRepository;
     }
 
-    @GetMapping("/magazynier")
-    public List<Magazynier> getMagazynier(){
-        return (List<Magazynier>) magazynierRepository.findAll();
+    @RequestMapping(value="/magazynier", method = RequestMethod.GET)
+    public MagazynierList getAll(){
+        return new MagazynierList(magazynierRepository.findAll());
+    }
+
+    @RequestMapping(value = "/magazynier/{ID}", method = RequestMethod.GET)
+    public Magazynier getMagazynier(@PathVariable Integer ID){
+        return magazynierRepository.findById(ID).orElseThrow(() -> new MagazynierNotFoundException(ID));
+    }
+}
+
+class MagazynierNotFoundException extends RuntimeException {
+    MagazynierNotFoundException(Integer ID) {
+        super("404 Magazynier with id "+ID+" not found");
     }
 }

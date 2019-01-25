@@ -19,14 +19,14 @@ public class Lista_rozwozowaResource{
         return new Lista_rozwozowaList(lista_rozwozowaRepository.findAll());
     }
 
-    @RequestMapping(value="/lista_rozwozowa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/lista_rozwozowa/{ID}", method = RequestMethod.GET)
     public Lista_rozwozowa getLista_rozwozowa(@PathVariable Integer ID){
         return lista_rozwozowaRepository.findById(ID).orElseThrow(() -> new Lista_rozwozowaNotFoundException(ID));
     }
 }
 
 class Lista_rozwozowaNotFoundException extends RuntimeException {
-    Lista_rozwozowaNotFoundException(Integer id) {
-        super("404 Lista rozwozowa with id "+id+" not found");
+    Lista_rozwozowaNotFoundException(Integer ID) {
+        super("404 Lista rozwozowa with id "+ID+" not found");
     }
 }

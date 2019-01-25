@@ -19,7 +19,7 @@ public class AwizoResource {
         return new AwizoList(awizoRepository.findAll());
     }
 
-    @RequestMapping(value = "/awizo/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/awizo/{ID}", method = RequestMethod.GET)
     public Awizo getAwizo(@PathVariable Integer ID){
         return awizoRepository.findById(ID).orElseThrow(() -> new AwizoNotFoundException(ID));
     }
@@ -28,7 +28,7 @@ public class AwizoResource {
 }
 class AwizoNotFoundException extends RuntimeException {
 
-     AwizoNotFoundException(Integer id) {
-        super("404 Awizo with id "+id+" not found");
+     AwizoNotFoundException(Integer ID) {
+        super("404 Awizo with id "+ID+" not found");
     }
 }

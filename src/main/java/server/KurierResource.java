@@ -18,14 +18,14 @@ public class KurierResource{
         return new KurierList(kurierRepository.findAll());
     }
 
-    @RequestMapping(value="/kurier/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/kurier/{ID}", method = RequestMethod.GET)
     public Kurier getKurier(@PathVariable Integer ID){
         return kurierRepository.findById(ID).orElseThrow(() -> new KurierNotFoundException(ID));
     }
 }
 
 class KurierNotFoundException extends RuntimeException {
-    KurierNotFoundException(Integer id) {
-        super("404 Kurier with id "+id+" not found");
+    KurierNotFoundException(Integer ID) {
+        super("404 Kurier with id "+ID+" not found");
     }
 }

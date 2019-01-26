@@ -9,7 +9,6 @@ public class Lista_rozwozowa {
     @Id
     private Integer ID;
     @Column
-    @Temporal(TemporalType.DATE)
     private Date Data;
     //fk
     @Column

@@ -3,6 +3,7 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,8 @@ public class NadawcaResource {
     }
 
     @RequestMapping(value = "/nadawcy", method = RequestMethod.GET)
-    public NadawcaList getAll(){
-        return new NadawcaList(nadawcaRepository.findAll());
+    public List<Nadawca> getAll(){
+        return new ArrayList<>(nadawcaRepository.findAll());
     }
 
     @RequestMapping(value = "/nadawcy/{ID}", method = RequestMethod.GET)

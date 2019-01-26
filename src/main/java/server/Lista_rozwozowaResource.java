@@ -2,6 +2,7 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,8 +16,8 @@ public class Lista_rozwozowaResource{
     }
 
     @RequestMapping(value = "/lista_rozwozowa", method = RequestMethod.GET)
-    public Lista_rozwozowaList getAll(){
-        return new Lista_rozwozowaList(lista_rozwozowaRepository.findAll());
+    public List<Lista_rozwozowa> getAll(){
+        return new ArrayList<>(lista_rozwozowaRepository.findAll());
     }
 
     @RequestMapping(value="/lista_rozwozowa/{ID}", method = RequestMethod.GET)
@@ -26,7 +27,8 @@ public class Lista_rozwozowaResource{
 
     @RequestMapping(value = "/lista_rozwozowa", method = RequestMethod.POST)
     public Lista_rozwozowa getNewLista_rozwozowa(@RequestBody Lista_rozwozowa newLista_rozwozowa) {
-        System.out.println("Przyjalem");
+
+        System.out.println("ID: "+newLista_rozwozowa.getID()+" Date: "+newLista_rozwozowa.getData().toString()+" Magazynier: "+newLista_rozwozowa.getMagazynier_ID());
         return lista_rozwozowaRepository.save(newLista_rozwozowa);
     }
 }

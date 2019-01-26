@@ -3,6 +3,8 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/rest")
 @CrossOrigin
@@ -14,7 +16,7 @@ public class PrzesylkaResource {
     }
 
     @RequestMapping(value = "/przesylka", method = RequestMethod.GET)
-    public PrzesylkaList getAll(){
-        return new PrzesylkaList(przesylkaRepository.findAll());
+    public List<Przesylka> getAll(){
+        return przesylkaRepository.findAll();
     }
 }

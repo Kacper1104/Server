@@ -1,6 +1,7 @@
 package server;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OdbiorcaRepository extends CrudRepository<Odbiorca, Integer> {
+
+public interface OdbiorcaRepository extends JpaRepository<Odbiorca, Integer> {
 }

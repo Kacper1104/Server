@@ -19,7 +19,7 @@ public class OdbiorcaResource {
     }
 
     @GetMapping("/odbiorca")
-    public List<Odbiorca> getOdbiorca(){
-        return (List<Odbiorca>) odbiorcaRepository.findAll();
+    public List<Odbiorca> getAll(){
+        return odbiorcaRepository.findAll();
     }
 }

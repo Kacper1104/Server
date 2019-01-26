@@ -3,6 +3,7 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,8 @@ public class MagazynierResource {
     }
 
     @RequestMapping(value="/magazynier", method = RequestMethod.GET)
-    public MagazynierList getAll(){
-        return new MagazynierList(magazynierRepository.findAll());
+    public List<Magazynier> getAll(){
+        return new ArrayList<>(magazynierRepository.findAll());
     }
 
     @RequestMapping(value = "/magazynier/{ID}", method = RequestMethod.GET)

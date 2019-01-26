@@ -2,6 +2,7 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,8 +16,8 @@ public class AwizoResource {
     }
 
     @RequestMapping(value = "/awizo", method = RequestMethod.GET)
-    public AwizoList getAll(){
-        return new AwizoList(awizoRepository.findAll());
+    public List<Awizo> getAll(){
+        return new ArrayList<Awizo>(awizoRepository.findAll());
     }
 
     @RequestMapping(value = "/awizo/{ID}", method = RequestMethod.GET)

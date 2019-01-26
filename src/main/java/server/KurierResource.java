@@ -2,6 +2,9 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -14,8 +17,8 @@ public class KurierResource{
     }
 
     @RequestMapping(value = "/kurier", method = RequestMethod.GET)
-    public KurierList getAll(){
-        return new KurierList(kurierRepository.findAll());
+    public List<Kurier> getAll(){
+        return new ArrayList<Kurier>(kurierRepository.findAll());
     }
 
     @RequestMapping(value="/kurier/{ID}", method = RequestMethod.GET)

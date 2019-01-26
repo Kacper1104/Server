@@ -27,9 +27,36 @@ public class PrzesylkaResource {
 
     @RequestMapping(value = "/przesylka", method = RequestMethod.POST)
     public Przesylka newPrzesylka(@RequestBody Przesylka newPrzesylka) {
+        return changePrzesylka(newPrzesylka);
+    }
 
-        System.out.println(" Created new Przesylka");
-        return przesylkaRepository.save(newPrzesylka);
+    private Przesylka changePrzesylka(Przesylka newPrzesylka) {
+        return przesylkaRepository.findById(newPrzesylka.getID())
+                .map(przesylka -> {
+                    przesylka.setData_nadania(newPrzesylka.getData_nadania());
+                    przesylka.setKoszt_Do_Zaplaty(newPrzesylka.getKoszt_Do_Zaplaty());
+                    przesylka.setLista_rozwozowa_ID(newPrzesylka.getLista_rozwozowa_ID());
+                    if (przesylka.getLista_rozwozowa_ID() != null) {
+                        przesylka.setNa_liscie_rozwozowej(true);
+                    } else {
+                        przesylka.setNa_liscie_rozwozowej(false);
+                    }
+                    przesylka.setNadawca_ID(newPrzesylka.getNadawca_ID());
+                    przesylka.setOdbiorca_ID(newPrzesylka.getOdbiorca_ID());
+                    przesylka.setOpcja_dostawy(newPrzesylka.getOpcja_dostawy());
+                    przesylka.setProba_dostarczenia(newPrzesylka.getProba_dostarczenia());
+                    przesylka.setOstatnia_zmiana_statusu(newPrzesylka.getOstatnia_zmiana_statusu());
+                    przesylka.setStatus_przesylki(newPrzesylka.getStatus_przesylki());
+
+                    System.out.println("UPDATED PRZESYLKA ID: " + przesylka.getID());
+                    return przesylkaRepository.save(przesylka);
+                })
+                .orElseGet(() -> {
+                    newPrzesylka.setID(newPrzesylka.getID());
+
+                    System.out.println("CREATED PRZESYKLKA ID: " + newPrzesylka.getID());
+                    return przesylkaRepository.save(newPrzesylka);
+                });
     }
 }
 

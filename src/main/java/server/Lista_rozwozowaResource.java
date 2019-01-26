@@ -29,7 +29,22 @@ public class Lista_rozwozowaResource{
     public Lista_rozwozowa newLista_rozwozowa(@RequestBody Lista_rozwozowa newLista_rozwozowa) {
 
         System.out.println("ID: "+newLista_rozwozowa.getID()+" Date: "+newLista_rozwozowa.getData().toString()+" Magazynier: "+newLista_rozwozowa.getMagazynier_ID());
-        return lista_rozwozowaRepository.save(newLista_rozwozowa);
+        return changeListaRozwozowa(newLista_rozwozowa);
+    }
+
+    private Lista_rozwozowa changeListaRozwozowa(Lista_rozwozowa newLista_rozwozowa) {
+
+        return lista_rozwozowaRepository.findById(newLista_rozwozowa.getID())
+                .map(lista_rozwozowa -> {
+                    lista_rozwozowa.setData(newLista_rozwozowa.getData());
+                    lista_rozwozowa.setMagazynier_ID(newLista_rozwozowa.getMagazynier_ID());
+
+                    return lista_rozwozowaRepository.save(lista_rozwozowa);
+                })
+                .orElseGet(() -> {
+                    newLista_rozwozowa.setID(newLista_rozwozowa.getMagazynier_ID());
+                    return lista_rozwozowaRepository.save(newLista_rozwozowa);
+                });
     }
 }
 

@@ -32,6 +32,23 @@ public class KurierResource{
         System.out.println(" Created new Kurier with ID: "+newKurier.getID()+" Name: "+newKurier.getImie_I_Nazwisko()+" Login: "+newKurier.getLogin()+" Haslo: "+newKurier.getHaslo()+" Lista rozwozowa: "+newKurier.getLista_rozwozowa_ID());
         return kurierRepository.save(newKurier);
     }
+
+    public Kurier changeKurier(Kurier newKurier){
+
+        return kurierRepository.findById(newKurier.getID())
+                .map(kurier -> {
+                    kurier.setImie_I_Nazwisko(newKurier.getImie_I_Nazwisko());
+                    kurier.setLogin(newKurier.getLogin());
+                    kurier.setHaslo(newKurier.getHaslo());
+                    kurier.setLista_rozwozowa_ID(newKurier.getLista_rozwozowa_ID());
+
+                    return kurierRepository.save(kurier);
+                })
+                .orElseGet(() -> {
+                    newKurier.setID(newKurier.getID());
+                    return kurierRepository.save(newKurier);
+                });
+    }
 }
 
 class KurierNotFoundException extends RuntimeException {

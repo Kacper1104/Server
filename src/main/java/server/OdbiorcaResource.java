@@ -28,8 +28,35 @@ public class OdbiorcaResource {
     @RequestMapping(value = "/odbiorca", method = RequestMethod.POST)
     public Odbiorca newOdbiorca(@RequestBody Odbiorca newOdbiorca) {
 
-        System.out.println(" Created new Nadawca with ID: "+newOdbiorca.getID()+" Name: "+newOdbiorca.getImie_I_Nazwisko()+" Login: "+newOdbiorca.getLogin()+" Haslo: "+newOdbiorca.getHaslo()+ " Adnotacje: "+newOdbiorca.getAdnotacje()+" Miejscowosc: "+newOdbiorca.getMiejscowosc()+" Kod pocztowy: "+newOdbiorca.getKod_Pocztowy()+" Adres: "+newOdbiorca.getAdres());
-        return odbiorcaRepository.save(newOdbiorca);
+        return changeOdbiorca(newOdbiorca);
+    }
+
+    private Odbiorca changeOdbiorca(Odbiorca newOdbiorca) {
+        if(newOdbiorca.getID() == null){
+            newOdbiorca.setID(-1);
+        }
+        return odbiorcaRepository.findById(newOdbiorca.getID())
+                .map(odbiorca -> {
+                    odbiorca.setAdnotacje(newOdbiorca.getAdnotacje());
+                    odbiorca.setAdres(newOdbiorca.getAdres());
+                    odbiorca.setHaslo(newOdbiorca.getHaslo());
+                    odbiorca.setImie_I_Nazwisko(newOdbiorca.getImie_I_Nazwisko());
+                    odbiorca.setKod_Pocztowy(newOdbiorca.getKod_Pocztowy());
+                    odbiorca.setLogin(newOdbiorca.getLogin());
+                    odbiorca.setMiejscowosc(newOdbiorca.getMiejscowosc());
+
+                    System.out.println("UPDATED ODBIORCA ID: " + odbiorca.getID());
+                    return odbiorcaRepository.save(odbiorca);
+                })
+                .orElseGet(() -> {
+                    if(odbiorcaRepository.findAll().size() != 0)
+                        newOdbiorca.setID(odbiorcaRepository.findAllByOrderByIDDesc().get(0).getID()+1);
+                    else
+                        newOdbiorca.setID(1);
+
+                    System.out.println("CREATED ODBIORCA ID: " + newOdbiorca.getID());
+                    return odbiorcaRepository.save(newOdbiorca);
+                });
     }
 }
 

@@ -29,8 +29,7 @@ public class KurierResource{
     @RequestMapping(value = "/kurier", method = RequestMethod.POST)
     public Kurier newKurier(@RequestBody Kurier newKurier) {
 
-        System.out.println(" Created new Kurier with ID: "+newKurier.getID()+" Name: "+newKurier.getImie_I_Nazwisko()+" Login: "+newKurier.getLogin()+" Haslo: "+newKurier.getHaslo()+" Lista rozwozowa: "+newKurier.getLista_rozwozowa_ID());
-        return kurierRepository.save(newKurier);
+        return changeKurier(newKurier);
     }
 
     public Kurier changeKurier(Kurier newKurier){
@@ -43,19 +42,25 @@ public class KurierResource{
                     kurier.setLogin(newKurier.getLogin());
                     kurier.setHaslo(newKurier.getHaslo());
                     kurier.setLista_rozwozowa_ID(newKurier.getLista_rozwozowa_ID());
-
+                    
+                    System.out.println("UPDATED KURIER ID: " + kurier.getID());
                     return kurierRepository.save(kurier);
                 })
                 .orElseGet(() -> {
-                    newKurier.setID(kurierRepository.findAll().get((kurierRepository.findAll().size()-1)).getID()+1);
+                    if(kurierRepository.findAll().size() != 0)
+                                newKurier.setID(kurierRepository.findAllByOrderByIDDesc().get(0).getID()+1);
+                            else
+                                newKurier.setID(1);
 
+                    System.out.println("CREATED KURIER ID: " + newKurier.getID());
                     return kurierRepository.save(newKurier);
                 });
     }
 }
 
-class KurierNotFoundException extends RuntimeException {
-    KurierNotFoundException(Integer ID) {
+class KurierNotFoundException extends RuntimeException{
+    public KurierNotFoundException(Integer ID){
         super("404 Kurier with id "+ID+" not found");
     }
 }
+

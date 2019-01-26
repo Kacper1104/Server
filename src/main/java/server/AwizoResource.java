@@ -28,12 +28,33 @@ public class AwizoResource {
     @RequestMapping(value = "/awizo", method = RequestMethod.POST)
     public Awizo newAwizo(@RequestBody Awizo newAwizo) {
 
-        System.out.println(" Created new Awizo with ID: "+newAwizo.getID()+" Date: "+newAwizo.getData_zostawienia()+" Przesylka: "+newAwizo.getPrzesylka_ID());
-        return awizoRepository.save(newAwizo);
+        return changeAwizo(newAwizo);
     }
 
+    public Awizo changeAwizo(Awizo newAwizo){
+        if(newAwizo.getID() == null){
+            newAwizo.setID(-1);
+        }
+        return awizoRepository.findById(newAwizo.getID())
+                .map(awizo -> {
+                    awizo.setData_zostawienia(newAwizo.getData_zostawienia());
+                    awizo.setPrzesylka_ID(newAwizo.getPrzesylka_ID());
 
+                    System.out.println("UPDATED AWIZO ID: " + awizo.getID());
+                    return awizoRepository.save(awizo);
+                })
+                .orElseGet(() -> {
+                    if(awizoRepository.findAll().size() != 0)
+                        newAwizo.setID(awizoRepository.findAllByOrderByIDDesc().get(0).getID()+1);
+                    else
+                        newAwizo.setID(1);
+
+                    System.out.println("CREATED KURIER ID: " + newAwizo.getID());
+                    return awizoRepository.save(newAwizo);
+                });
+    }
 }
+
 class AwizoNotFoundException extends RuntimeException {
 
      AwizoNotFoundException(Integer ID) {

@@ -41,11 +41,16 @@ public class Lista_rozwozowaResource{
                     lista_rozwozowa.setData(newLista_rozwozowa.getData());
                     lista_rozwozowa.setMagazynier_ID(newLista_rozwozowa.getMagazynier_ID());
 
+                    System.out.println("UPDATED LISTA ROZWOZOWA ID: " + lista_rozwozowa.getID());
                     return lista_rozwozowaRepository.save(lista_rozwozowa);
                 })
                 .orElseGet(() -> {
-                    newLista_rozwozowa.setID(lista_rozwozowaRepository.findAll().get((lista_rozwozowaRepository.findAll().size()-1)).getID()+1);
+                    if(lista_rozwozowaRepository.findAll().size() != 0)
+                        newLista_rozwozowa.setID(lista_rozwozowaRepository.findAllByOrderByIDDesc().get(0).getID()+1);
+                    else
+                        newLista_rozwozowa.setID(1);
 
+                    System.out.println("CREATED LISTA ROZWOZOWA ID: " + newLista_rozwozowa.getID());
                     return lista_rozwozowaRepository.save(newLista_rozwozowa);
                 });
     }

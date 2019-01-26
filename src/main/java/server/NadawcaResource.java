@@ -29,8 +29,35 @@ public class NadawcaResource {
     @RequestMapping(value = "/nadawca", method = RequestMethod.POST)
     public Nadawca newNadawca(@RequestBody Nadawca newNadawca) {
 
-        System.out.println(" Created new Nadawca with ID: "+newNadawca.getID()+" Name: "+newNadawca.getImie_I_Nazwisko()+" Login: "+newNadawca.getLogin()+" Haslo: "+newNadawca.getHaslo()+ " Numer konta: "+newNadawca.getNumer_konta()+" Miejscowosc: "+newNadawca.getMiejscowosc()+" Kod pocztowy: "+newNadawca.getKod_Pocztowy()+" Adres: "+newNadawca.getAdres()+" ");
-        return nadawcaRepository.save(newNadawca);
+        return changeNadawca(newNadawca);
+    }
+
+    private Nadawca changeNadawca(Nadawca newNadawca) {
+        if(newNadawca.getID() == null){
+            newNadawca.setID(-1);
+        }
+        return nadawcaRepository.findById(newNadawca.getID())
+                .map(nadawca -> {
+                    nadawca.setNumer_konta(newNadawca.getNumer_konta());
+                    nadawca.setAdres(newNadawca.getAdres());
+                    nadawca.setHaslo(newNadawca.getAdres());
+                    nadawca.setImie_I_Nazwisko(newNadawca.getImie_I_Nazwisko());
+                    nadawca.setKod_Pocztowy(newNadawca.getKod_Pocztowy());
+                    nadawca.setLogin(newNadawca.getLogin());
+                    nadawca.setMiejscowosc(newNadawca.getMiejscowosc());
+
+                    System.out.println("UPDATED NADAWCA ID: " + nadawca.getID());
+                    return nadawcaRepository.save(nadawca);
+                })
+                .orElseGet(() -> {
+                    if(nadawcaRepository.findAll().size() != 0)
+                        newNadawca.setID(nadawcaRepository.findAllByOrderByIDDesc().get(0).getID()+1);
+                    else
+                        newNadawca.setID(1);
+
+                    System.out.println("CREATED NADAWCA ID: " + newNadawca.getID());
+                    return nadawcaRepository.save(newNadawca);
+                });
     }
 }
 

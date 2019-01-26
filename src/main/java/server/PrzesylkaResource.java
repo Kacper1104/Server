@@ -55,7 +55,10 @@ public class PrzesylkaResource {
                     return przesylkaRepository.save(przesylka);
                 })
                 .orElseGet(() -> {
-                    newPrzesylka.setID(przesylkaRepository.findAll().get((przesylkaRepository.findAll().size()-1)).getID()+1);
+                    if(przesylkaRepository.findAll().size() != 0)
+                        newPrzesylka.setID(przesylkaRepository.findAllByOrderByIDDesc().get(0).getID()+1);
+                    else
+                        newPrzesylka.setID(1);
 
                     System.out.println("CREATED PRZESYKLKA ID: " + newPrzesylka.getID());
                     return przesylkaRepository.save(newPrzesylka);

@@ -26,7 +26,7 @@ public class Lista_rozwozowaResource{
     }
 
     @RequestMapping(value = "/lista_rozwozowa", method = RequestMethod.POST)
-    public Lista_rozwozowa getNewLista_rozwozowa(@RequestBody Lista_rozwozowa newLista_rozwozowa) {
+    public Lista_rozwozowa newLista_rozwozowa(@RequestBody Lista_rozwozowa newLista_rozwozowa) {
 
         System.out.println("ID: "+newLista_rozwozowa.getID()+" Date: "+newLista_rozwozowa.getData().toString()+" Magazynier: "+newLista_rozwozowa.getMagazynier_ID());
         return lista_rozwozowaRepository.save(newLista_rozwozowa);

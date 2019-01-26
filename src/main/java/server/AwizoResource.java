@@ -25,6 +25,13 @@ public class AwizoResource {
         return awizoRepository.findById(ID).orElseThrow(() -> new AwizoNotFoundException(ID));
     }
 
+    @RequestMapping(value = "/awizo", method = RequestMethod.POST)
+    public Awizo newAwizo(@RequestBody Awizo newAwizo) {
+
+        System.out.println(" Created new Awizo with ID: "+newAwizo.getID()+" Date: "+newAwizo.getData_zostawienia()+" Przesylka: "+newAwizo.getPrzesylka_ID());
+        return awizoRepository.save(newAwizo);
+    }
+
 
 }
 class AwizoNotFoundException extends RuntimeException {

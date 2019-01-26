@@ -19,4 +19,22 @@ public class PrzesylkaResource {
     public List<Przesylka> getAll(){
         return przesylkaRepository.findAll();
     }
+
+    @RequestMapping(value = "/przesylka/{ID}", method = RequestMethod.GET)
+    public Przesylka getPrzesylka(@PathVariable Integer ID){
+        return przesylkaRepository.findById(ID).orElseThrow(() -> new PrzesylkaNotFoundException(ID));
+    }
+
+    @RequestMapping(value = "/przesylka", method = RequestMethod.POST)
+    public Przesylka newPrzesylka(@RequestBody Przesylka newPrzesylka) {
+
+        System.out.println(" Created new Przesylka");
+        return przesylkaRepository.save(newPrzesylka);
+    }
+}
+
+class PrzesylkaNotFoundException extends RuntimeException{
+    public PrzesylkaNotFoundException(Integer ID){
+        super("404 Przesylka with id "+ID+" not found");
+    }
 }

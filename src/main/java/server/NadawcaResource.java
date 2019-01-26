@@ -16,14 +16,21 @@ public class NadawcaResource {
         this.nadawcaRepository = nadawcaRepository;
     }
 
-    @RequestMapping(value = "/nadawcy", method = RequestMethod.GET)
+    @RequestMapping(value = "/nadawca", method = RequestMethod.GET)
     public List<Nadawca> getAll(){
         return new ArrayList<>(nadawcaRepository.findAll());
     }
 
-    @RequestMapping(value = "/nadawcy/{ID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/nadawca/{ID}", method = RequestMethod.GET)
     public Nadawca getNadawca(@PathVariable Integer ID){
         return nadawcaRepository.findById(ID).orElseThrow(() -> new NadawcaNotFoundException(ID));
+    }
+
+    @RequestMapping(value = "/nadawca", method = RequestMethod.POST)
+    public Nadawca newNadawca(@RequestBody Nadawca newNadawca) {
+
+        System.out.println(" Created new Nadawca with ID: "+newNadawca.getID()+" Name: "+newNadawca.getImie_I_Nazwisko()+" Login: "+newNadawca.getLogin()+" Haslo: "+newNadawca.getHaslo()+ " Numer konta: "+newNadawca.getNumer_konta()+" Miejscowosc: "+newNadawca.getMiejscowosc()+" Kod pocztowy: "+newNadawca.getKod_Pocztowy()+" Adres: "+newNadawca.getAdres()+" ");
+        return nadawcaRepository.save(newNadawca);
     }
 }
 

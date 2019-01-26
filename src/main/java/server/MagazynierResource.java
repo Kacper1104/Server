@@ -25,6 +25,14 @@ public class MagazynierResource {
     public Magazynier getMagazynier(@PathVariable Integer ID){
         return magazynierRepository.findById(ID).orElseThrow(() -> new MagazynierNotFoundException(ID));
     }
+
+    @RequestMapping(value = "/magazynier", method = RequestMethod.POST)
+    public Magazynier newMagazynier(@RequestBody Magazynier newMagazynier) {
+
+        System.out.println(" Created new Magazynier with ID: "+newMagazynier.getID()+" Login: "+newMagazynier.getLogin()+" Haslo: "+newMagazynier.getHaslo());
+        return magazynierRepository.save(newMagazynier);
+    }
+
 }
 
 class MagazynierNotFoundException extends RuntimeException {

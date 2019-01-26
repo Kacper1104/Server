@@ -1,0 +1,16 @@
+Index: src/main/java/server/Lista_rozwozowaResource.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/server/Lista_rozwozowaResource.java	(revision 0a8781f143134067d931676b68dd9a6a69a1b200)
++++ src/main/java/server/Lista_rozwozowaResource.java	(date 1548531520612)
+@@ -28,7 +28,7 @@
+     @RequestMapping(value = "/lista_rozwozowa", method = RequestMethod.POST)
+     public Lista_rozwozowa newLista_rozwozowa(@RequestBody Lista_rozwozowa newLista_rozwozowa) {
+ 
+-        System.out.println("ID: "+newLista_rozwozowa.getID()+" Date: "+newLista_rozwozowa.getData().toString()+" Magazynier: "+newLista_rozwozowa.getMagazynier_ID());
++        //System.out.println("ID: "+newLista_rozwozowa.getID()+" Date: "+newLista_rozwozowa.getData().toString()+" Magazynier: "+newLista_rozwozowa.getMagazynier_ID());
+         return changeListaRozwozowa(newLista_rozwozowa);
+     }
+ 

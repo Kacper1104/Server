@@ -7,9 +7,9 @@ import javax.persistence.*;
 public class Magazynier{
     @Id
     private Integer ID;
-    @Column(nullable = false)
+    @Column
     private String Login;
-    @Column(nullable = false)
+    @Column
     private String Haslo;
 
 

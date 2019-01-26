@@ -7,7 +7,7 @@ import java.util.Date;
 public class Przesylka{
     @Id
     private Integer ID;
-    @Column(length = 30, nullable = false)
+    @Column(length = 30)
     private String Status_przesylki;
     @Column(length = 30)
     private String Opcja_dostawy;

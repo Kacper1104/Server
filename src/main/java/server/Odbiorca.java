@@ -8,17 +8,17 @@ public class Odbiorca{
     private Integer ID;
     @Column(length = 255)
     private String Adnotacje;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String Imie_I_Nazwisko;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String Adres;
-    @Column(length = 6, nullable = false)
+    @Column(length = 6)
     private String Kod_Pocztowy;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String Miejscowosc;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String Login;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String Haslo;
 
     //getters & setters

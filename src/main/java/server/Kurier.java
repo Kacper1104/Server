@@ -9,9 +9,9 @@ public class Kurier {
     private Integer ID;
     @Column
     private Integer Lista_rozwozowa_ID;
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String Login;
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String Haslo;
     @Column(length = 50)
     private String Imie_I_Nazwisko;

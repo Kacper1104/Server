@@ -17,9 +17,9 @@ public class Nadawca {
     private String Kod_Pocztowy;
     @Column(length = 50)
     private String Miejscowosc;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String Login;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String Haslo;
 
     //getters & setters

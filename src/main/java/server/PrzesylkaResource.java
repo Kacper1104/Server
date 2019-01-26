@@ -31,6 +31,9 @@ public class PrzesylkaResource {
     }
 
     private Przesylka changePrzesylka(Przesylka newPrzesylka) {
+        if(newPrzesylka.getID() == null){
+            newPrzesylka.setID(-1);
+        }
         return przesylkaRepository.findById(newPrzesylka.getID())
                 .map(przesylka -> {
                     przesylka.setData_nadania(newPrzesylka.getData_nadania());
@@ -52,7 +55,7 @@ public class PrzesylkaResource {
                     return przesylkaRepository.save(przesylka);
                 })
                 .orElseGet(() -> {
-                    newPrzesylka.setID(newPrzesylka.getID());
+                    newPrzesylka.setID(przesylkaRepository.findAll().get((przesylkaRepository.findAll().size()-1)).getID()+1);
 
                     System.out.println("CREATED PRZESYKLKA ID: " + newPrzesylka.getID());
                     return przesylkaRepository.save(newPrzesylka);

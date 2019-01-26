@@ -34,7 +34,9 @@ public class KurierResource{
     }
 
     public Kurier changeKurier(Kurier newKurier){
-
+        if(newKurier.getID() == null){
+            newKurier.setID(-1);
+        }
         return kurierRepository.findById(newKurier.getID())
                 .map(kurier -> {
                     kurier.setImie_I_Nazwisko(newKurier.getImie_I_Nazwisko());
@@ -45,7 +47,8 @@ public class KurierResource{
                     return kurierRepository.save(kurier);
                 })
                 .orElseGet(() -> {
-                    newKurier.setID(newKurier.getID());
+                    newKurier.setID(kurierRepository.findAll().get((kurierRepository.findAll().size()-1)).getID()+1);
+
                     return kurierRepository.save(newKurier);
                 });
     }

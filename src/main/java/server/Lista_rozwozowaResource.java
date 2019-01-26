@@ -33,7 +33,9 @@ public class Lista_rozwozowaResource{
     }
 
     private Lista_rozwozowa changeListaRozwozowa(Lista_rozwozowa newLista_rozwozowa) {
-
+        if(newLista_rozwozowa.getID() == null){
+            newLista_rozwozowa.setID(-1);
+        }
         return lista_rozwozowaRepository.findById(newLista_rozwozowa.getID())
                 .map(lista_rozwozowa -> {
                     lista_rozwozowa.setData(newLista_rozwozowa.getData());
@@ -42,7 +44,8 @@ public class Lista_rozwozowaResource{
                     return lista_rozwozowaRepository.save(lista_rozwozowa);
                 })
                 .orElseGet(() -> {
-                    newLista_rozwozowa.setID(newLista_rozwozowa.getMagazynier_ID());
+                    newLista_rozwozowa.setID(lista_rozwozowaRepository.findAll().get((lista_rozwozowaRepository.findAll().size()-1)).getID()+1);
+
                     return lista_rozwozowaRepository.save(newLista_rozwozowa);
                 });
     }
